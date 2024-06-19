@@ -3,6 +3,8 @@ const express = require('express')
 const mongoose = require("mongoose");
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./swagger-output.json');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 // const swaggerUi = require('swagger-ui-express')
 // const swaggerDocument = require('./swagger-output.json');
@@ -15,12 +17,11 @@ const usuarioRouter = require("./src/modules/user/user.routes");
 // const claimTypeRoute = require("./src/modules/claimType/claimType.routes");
 // const auditRoute = require("./src/modules/audit/audit.routes");
 // const notifyRoute = require("./src/modules/notify/notify.routes");
-
+const productoRouter = require("./src/modules/product/product.routes");
 // Secure setup
 const { expressjwt: jwt } = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+
 
 const app = express()
 const port = process.env.PORT
@@ -47,6 +48,7 @@ app.get("/", async (request, response) => {
 // app.use(loginRouter);
 // app.use(reclamoRouter);
 app.use(usuarioRouter);
+app.use(productoRouter);
 // app.use(areaRouter);
 // app.use(claimTypeRoute);
 // app.use(auditRoute);

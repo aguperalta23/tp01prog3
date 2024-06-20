@@ -7,19 +7,13 @@ const router = express.Router();
 router.get("/api/user", async (req, res) => {
   // #swagger.tags = ['Usuario']
   try {
-    let params = {};
-    if (req.headers['params']) {
-      try {
-        params = JSON.parse(req.headers['params']);
-      } catch (parseError) {
-        return res.status(400).send({ error: "Invalid JSON in params header" });
-      }
-    }
+    params = JSON.parse(req.headers['params'])
 
-    let paginated = await userService.paginated(params);
+    let paginated = await userService.paginated(params)
     return res.status(200).send(paginated);
+
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return res.status(500).send(error);
   }
 });

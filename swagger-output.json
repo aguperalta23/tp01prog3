@@ -121,6 +121,9 @@
     },
     "/productos": {
       "post": {
+        "tags": [
+          "Productos"
+        ],
         "description": "",
         "parameters": [
           {
@@ -149,6 +152,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Productos"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -162,6 +168,9 @@
     },
     "/productos/{id}": {
       "get": {
+        "tags": [
+          "Productos"
+        ],
         "description": "",
         "parameters": [
           {
@@ -184,6 +193,9 @@
         }
       },
       "patch": {
+        "tags": [
+          "Productos"
+        ],
         "description": "",
         "parameters": [
           {
@@ -206,6 +218,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Productos"
+        ],
         "description": "",
         "parameters": [
           {

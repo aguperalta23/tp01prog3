@@ -57,7 +57,7 @@ router.patch('/productos/:id', async (req, res) => {
     if (!producto) {
       return res.status(404).send();
     }
-    res.send(producto);
+    res.status(200).send('Producto actualizado correctamente.');
   } catch (error) {
     res.status(400).send(error);
   }
@@ -68,12 +68,16 @@ router.delete('/productos/:id', async (req, res) => {
   try {
     const producto = await productService.remove(req.params.id);
     if (!producto) {
-      return res.status(404).send();
+      console.log(`Producto con ID ${req.params.id} no encontrado`);
+      return res.status(404).send({ error: `Producto con ID ${req.params.id} no encontrado` }); // Enviar mensaje en la respuesta 404
     }
-    res.send(producto);
+    return res.status(200).send(producto);  // Enviar respuesta 200 si se encuentra y elimina el producto
   } catch (error) {
-    res.status(500).send(error);
+    console.error(`Error al eliminar producto con ID ${req.params.id}:`, error);
+    return res.status(500).send({ error: `Error al eliminar producto con ID ${req.params.id}` });  // Enviar mensaje en la respuesta 500
   }
 });
+
+
 
 module.exports = router;
